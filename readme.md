@@ -33,3 +33,12 @@
    });
 
 6. The coordinates of the plane's vertices go from -0.5 to +0.5 because our plane has a size of 1.
+
+7. To get the bigger rectangle, we need the coordinates to go from -1 to +1. Double the size of PlaneGeometry.
+   const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
+
+8. Change the plane color to black.  
+   gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+
+9. Add an uniform to control aplha(uAlpha);
+   Retrieve uAlpha inside fragmentShader, and use it.

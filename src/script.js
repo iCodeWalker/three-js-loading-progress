@@ -26,6 +26,10 @@ const scene = new THREE.Scene();
 const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
 // const overlayMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 const overlayMaterial = new THREE.ShaderMaterial({
+  transparent: true,
+  uniforms: {
+    uAlpha: { value: 1 },
+  },
   vertexShader: `
     void main()
     {
@@ -33,9 +37,11 @@ const overlayMaterial = new THREE.ShaderMaterial({
     }
     `,
   fragmentShader: `
+    uniform float uAlpha;
+
     void main()
     {
-        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        gl_FragColor = vec4(0.0, 0.0, 0.0, uAlpha);
     }
     `,
 });
