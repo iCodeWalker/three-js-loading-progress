@@ -32,4 +32,4 @@
 }`,
    });
 
-6.
+6. The coordinates of the plane's vertices go from -0.5 to +0.5 because our plane has a size of 1.

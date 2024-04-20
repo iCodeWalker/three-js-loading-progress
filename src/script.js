@@ -23,7 +23,7 @@ const scene = new THREE.Scene();
 /**
  * Create an overlay
  */
-const overlayGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
+const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
 // const overlayMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 const overlayMaterial = new THREE.ShaderMaterial({
   vertexShader: `
