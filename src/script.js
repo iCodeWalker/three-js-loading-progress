@@ -5,8 +5,23 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 /**
  * Loaders
  */
-const gltfLoader = new GLTFLoader();
-const cubeTextureLoader = new THREE.CubeTextureLoader();
+// Add loading manager, using which we can listen to events in loading manager
+const loadingManager = new THREE.LoadingManager(
+  // Callback when everything is loaded.
+  () => {
+    console.log("loaded");
+  },
+  // Callback when assets are being loaded(in progress).
+  () => {
+    console.log("progress");
+  },
+  // Callback for error
+  () => {
+    console.log("error");
+  }
+);
+const gltfLoader = new GLTFLoader(loadingManager);
+const cubeTextureLoader = new THREE.CubeTextureLoader(loadingManager);
 
 /**
  * Base
