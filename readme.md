@@ -1,16 +1,35 @@
-# Three.js Journey
+# Three.js loading process
 
-## Setup
-Download [Node.js](https://nodejs.org/en/download/).
-Run this followed commands:
+1. We will add a simple loader so that the scene appears nicely when everything is ready.
+2. We are going to use a mix of WebGL and HTML/CSS for the loader.
 
-``` bash
-# Install dependencies (only the first time)
-npm install
+3. We will add a black overlay that fades out when everything is ready.
+   There are many solutions.
 
-# Run the local server at localhost:8080
-npm run dev
+   1. Animate the <canvas> in CSS.
+   2. Animate a <div> above the <canvas> in CSS.
+   3. Animate a black rectangle in front of the camera.
 
-# Build for production in the dist/ directory
-npm run build
-```
+4. To put a plane infront of the camera, we can add it to the camera object and move it a bit forward.
+   Instead we are going to put the plane on the scene and position it's vertices using the vertex shader.
+
+   Create an overlay.
+   const overlayGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
+   const overlayMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+   const overlay = new THREE.Mesh(overlayGeometry, overlayMaterial);
+
+   scene.add(overlay);
+
+5. Replace MeshBasicMaterial with ShaderMaterial.
+   const overlayMaterial = new THREE.ShaderMaterial({
+   vertexShader: `   void main()
+{
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}`,
+   fragmentShader: `   void main()
+{
+    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0)
+}`,
+   });
+
+6.
