@@ -44,6 +44,16 @@
    Retrieve uAlpha inside fragmentShader, and use it.
 
 10. Now we want to when everything is loaded. We are loading only one modal in the scene, but we are loading many assets.
+
     1. The 6 images of the environment map
     2. The model's geometries.
     3. All the textures used in the model.
+
+11. Add loading manager for listening to events of loaders.
+
+12. We will use the GSAP library to animate the overlay.
+
+13. Inside progress callback function of the loading manager we will animate the overlay using GSAP library.
+    gsap.to(overlayMaterial.uniforms.uAlpha, { duration: 3, value: 0 });
+
+14. We are going to add progress bar matching the assets loading.

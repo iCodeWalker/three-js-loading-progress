@@ -2,6 +2,9 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
+// import GSAP
+import { gsap } from "gsap";
+
 /**
  * Loaders
  */
@@ -9,7 +12,9 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 const loadingManager = new THREE.LoadingManager(
   // Callback when everything is loaded.
   () => {
-    console.log("loaded");
+    // console.log("loaded");
+    // Inside here we will animate the overlay
+    gsap.to(overlayMaterial.uniforms.uAlpha, { duration: 3, value: 0 });
   },
   // Callback when assets are being loaded(in progress).
   () => {
