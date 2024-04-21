@@ -5,6 +5,9 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 // import GSAP
 import { gsap } from "gsap";
 
+// Retrive the loading-bar element, outside the callback
+const loadingBarElement = document.querySelector(".loading-bar");
+
 /**
  * Loaders
  */
@@ -17,8 +20,13 @@ const loadingManager = new THREE.LoadingManager(
     gsap.to(overlayMaterial.uniforms.uAlpha, { duration: 3, value: 0 });
   },
   // Callback when assets are being loaded(in progress).
-  () => {
-    console.log("progress");
+  (itemUrl, itemLoaded, itemTotal) => {
+    console.log(itemUrl, itemLoaded, itemTotal, "progress");
+    // We will update the progress bar which is buit using HTML and CSS here
+
+    // calculate the progress ratio using itemLoaded and totalItem
+    const progressRatio = itemLoaded / itemTotal;
+    loadingBarElement.style.transform = `scaleX(${progressRatio})`;
   },
   // Callback for error
   () => {

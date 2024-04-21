@@ -57,3 +57,18 @@
     gsap.to(overlayMaterial.uniforms.uAlpha, { duration: 3, value: 0 });
 
 14. We are going to add progress bar matching the assets loading.
+
+15. Simulating normal bandwidth:
+
+    1. When we are testing or developing in the local everything loads remarkably fast, but we can simulate a slower bandwidth.
+
+16. Creating a HTML Loading bar:
+
+    1. Add div in html.
+    2. Add styling in the css.
+    3. Update the bar in progress callback of the loading manager.
+
+17. The progress callback had 3 arguments:
+    1. The url of the assets.
+    2. How much assets were loaded.
+    3. The total number of assets to load.
