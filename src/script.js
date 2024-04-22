@@ -15,9 +15,26 @@ const loadingBarElement = document.querySelector(".loading-bar");
 const loadingManager = new THREE.LoadingManager(
   // Callback when everything is loaded.
   () => {
-    // console.log("loaded");
-    // Inside here we will animate the overlay
-    gsap.to(overlayMaterial.uniforms.uAlpha, { duration: 3, value: 0 });
+    // window.setTimeout(() => {
+    //   // console.log("loaded");
+    //   // Inside here we will animate the overlay
+    //   gsap.to(overlayMaterial.uniforms.uAlpha, { duration: 3, value: 0 });
+
+    //   // Add the 'end' class on loaded
+    //   loadingBarElement.classList.add("end");
+    //   loadingBarElement.style.transform = "";
+    // }, 500);
+
+    // We can delay function call using gsap also
+    gsap.delayedCall(0.5, () => {
+      // console.log("loaded");
+      // Inside here we will animate the overlay
+      gsap.to(overlayMaterial.uniforms.uAlpha, { duration: 3, value: 0 });
+
+      // Add the 'end' class on loaded
+      loadingBarElement.classList.add("end");
+      loadingBarElement.style.transform = "";
+    });
   },
   // Callback when assets are being loaded(in progress).
   (itemUrl, itemLoaded, itemTotal) => {

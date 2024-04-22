@@ -28,5 +28,12 @@ body
     transform-origin: top left;
     /* To smooth the animation we can use transition property */
     transition: transform 0.5s;
+    will-change: transform;
+}
 
+/* Hide loading bar on load complete */
+.loading-bar.end {
+    transform: scaleX(0);
+    transform-origin: top right;
+    transition: transform 1.5s ease-in-out;
 }
